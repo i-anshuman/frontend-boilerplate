@@ -1,7 +1,7 @@
 {
   "name": "frontend-boilerplate",
   "version": "1.0.0",
-  "description": "A boilerplate for developing frontend app using HTML, SASS or CSS and JavaScript.",
+  "description": "Boilerplate for developing frontend app using HTML, SASS or CSS and JavaScript.",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -27,6 +27,9 @@
   },
   "homepage": "https://github.com/i-anshuman/frontend-boilerplate#readme",
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.1",
     "file-loader": "^6.0.0",
@@ -41,5 +44,17 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.2.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.1%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
