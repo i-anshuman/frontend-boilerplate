@@ -10,7 +10,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 module.exports = merge(common, {
   mode: "production",
   output: {
-    filename: "[name].bundle.[contentHash].js",
+    filename: "assets/js/[name].[contentHash:5].js",
     path: path.resolve(__dirname, "build")
   },
   optimization: {
@@ -21,17 +21,32 @@ module.exports = merge(common, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "assets/css/[name].[contentHash].css"
+      filename: "assets/css/[name].[contentHash:5].css"
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      filename: "index.html",
+      template: path.resolve(__dirname, "src/index.html"),
+      hash: true,
+      chunks: [ "main" ],
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      }
+    }),
+    new HtmlWebpackPlugin({
+      filename: "readme/index.html",
+      template: path.resolve(__dirname, "src/readme/index.html"),
+      hash: true,
+      chunks: [ "readme" ], // more chunks can be added. Chunk name is same as keys in entrypoint.
       minify: {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
       }
     })
+    // new HtmlWebpackPlugin for each html file.
   ],
   module: {
     rules: [
@@ -48,7 +63,7 @@ module.exports = merge(common, {
         use: {
           loader: "file-loader",
           options: {
-            name: "[name].[hash].[ext]",
+            name: "[name].[hash:5].[ext]",
             outputPath: "assets/images"
           }
         }

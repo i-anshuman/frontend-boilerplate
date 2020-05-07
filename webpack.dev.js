@@ -11,8 +11,16 @@ module.exports = merge(common, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      filename: "index.html",
+      template: path.resolve(__dirname, "src/index.html"),
+      chunks: [ "main" ]
+    }),
+    new HtmlWebpackPlugin({
+      filename: "readme/index.html",
+      template: path.resolve(__dirname, "src/readme/index.html"),
+      chunks: [ "readme" ] // more chunks can be added. Chunk name is same as keys in entrypoint.
     })
+    // new HtmlWebpackPlugin for each html file.
   ],
   module: {
     rules: [

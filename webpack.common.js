@@ -1,9 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  devtool: "none",
+  devtool: "source-map",
   entry: {
-    main: "./src/index.js"
+    main: path.resolve(__dirname, "src/"),
+    readme: path.resolve(__dirname, "src/readme/"),
     // more entry points here
   },
   module: {
@@ -11,6 +12,11 @@ module.exports = {
       {
         test: /\.html$/,
         use: ["html-loader"]
+      },
+      { 
+        test: /\.js$/, 
+        exclude: /node_modules/, 
+        loader: "babel-loader"
       }
     ]
   }
